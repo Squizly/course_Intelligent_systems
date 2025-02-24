@@ -5,7 +5,7 @@ class RealEstateExpertSystem():
     def __init__(self, questions):
         self.questions = questions
     
-    def ask_question(self):
+    def get_facts(self):
         # Получаем ответы на вопросы от пользователя в словарь facts
         self.facts = dict()
 
@@ -26,10 +26,10 @@ class RealEstateExpertSystem():
         
         # Сделаем скоринг для каждого варианта, чтоб вывести топ вариантов
 
-        
+        #...
 
     def check_correct_budget(self):
-
+        # TO DO:: переделать
         if (int(self.facts["Бюджет"]) < 1_000_000):
 
             if (self.facts["Ипотека"] == "Нет"):
@@ -48,14 +48,12 @@ class RealEstateExpertSystem():
             self.facts["Бюджет"] = "Высокий"
         
         return True
-        
-        
 
 
 
 if __name__ == "__main__":
 
     system = RealEstateExpertSystem(questions)
-    system.ask_question()
+    system.get_facts()
     system.print_answers_user()
     system.predict()
