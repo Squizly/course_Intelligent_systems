@@ -1,4 +1,6 @@
 from knowledge_base.questions import questions
+from knowledge_base.rules import rules
+from collections import OrderedDict
 
 class RealEstateExpertSystem():
 
@@ -24,9 +26,29 @@ class RealEstateExpertSystem():
             print("Рекомендую увеличить бюджет.")
             return
         
-        # Сделаем скоринг для каждого варианта, чтоб вывести топ вариантов
+        self.print_answers_user()
+        
+        self.apartament_options = {}
 
-        #...
+        for rule in rules:
+            score = 0
+
+            for key,value in rule["if"].items():
+                if (self.facts[key] == value):
+                    score += 25
+
+            self.apartament_options[rule["then"]] = score
+        
+        great_options = dict(sorted(self.apartament_options.items(), key=lambda x: x[1]))
+
+        print("Наилучшие варианты : ")
+
+        # Получаем последние 5 элементов
+        last_five_options = list(great_options.items())[-5:]
+
+        # Выводим последние 5 вариантов
+        for key, value in last_five_options:
+            print(f"{key} , score = {value}")
 
     def check_correct_budget(self):
         # TO DO:: переделать
@@ -55,5 +77,4 @@ if __name__ == "__main__":
 
     system = RealEstateExpertSystem(questions)
     system.get_facts()
-    system.print_answers_user()
     system.predict()
