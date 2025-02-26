@@ -12,12 +12,38 @@ class RealEstateExpertSystem():
         self.facts = dict()
 
         for ask in self.questions:
-            self.facts[ask["Ключ"]] = input(ask["Вопрос"])
+            while True:
+                answer = input(ask["Вопрос"])
+                if (self.validate_input(ask, answer)):
+                    self.facts[ask['Ключ']] = answer
+                    break
+                else:
+                    print("Некорректный ввод. Пожалуйста, попробуйте снова.")
+    
+    def validate_input(self, ask, answer):
+
+        if ask["Ключ"] == "Бюджет":
+            try:
+                budget = int(answer)
+                if (budget <= 0):
+                    return False
+                return True
+            except ValueError:
+                return False
+        
+        elif ask["Ключ"] == "Ипотека" or ask["Ключ"] == "Семейное положение":
+            return answer in ["Да" , "Нет"]
+
+        elif ask["Ключ"] == "Тип недвижимости":
+            return answer in ["Жилой", "Коммерческий", "Инвестиционный"]
+
+        else:
+            return True
     
     def print_answers_user(self):
-        # Вывод ответов пользователя
-        for key,value in self.facts.items():
-            print(f"{key} : {value}")
+        print("\nВаши ответы:")
+        for key, value in self.facts.items():
+            print(f"{key}: {value}")
     
     def predict(self):
         # Учитывая ответы пользователя , строим цепочку выводов
@@ -34,7 +60,7 @@ class RealEstateExpertSystem():
             score = 0
 
             for key,value in rule["if"].items():
-                if (self.facts[key] == value):
+                if key in self.facts and self.facts[key] == value:
                     score += 25
 
             self.apartament_options[rule["then"]] = score
