@@ -8,12 +8,13 @@ from expert_system import *
 expert_system = RealEstateExpert(questions, rules)
 
 expert_system.get_facts()
-expert_system.convert_budget_to_category_type()
 
-facts = set(expert_system.facts.values())
-print(facts)
-
+# Прямой вывод результата со списком рекомендаций --->
+expert_system.fit()
 
 
-if (expert_system.backward_chaining("Однокомнатная студия эконом-класса в спальном районе", facts)):
-    print(" ---> достигнут")
+# Обратный вывод результата --->
+for rule in rules:
+
+    if (expert_system.backward_chaining(rule["Результат"])):
+        print(f"Система рекомендует : {rule["Результат"]}")
