@@ -13,6 +13,98 @@ class RealEstateExpert:
         self.questions = questions
         self.rules = rules
 
+        # Список для результата обратной цепочки
+        self.result_backward_chaining = []
+    
+    def fit(self):
+
+        # === === === === === === === === === === === === === === === === === #
+        # Получаем ответы на вопросы, проверяем их корректность и накладываем ограничения
+        # Получаем рекомендации прямой проверкой условий
+        # === === === === === === === === === === === === === === === === === #
+
+        # Рассмотрим частный случай , когда бюджет менее 1 млн. рублей --->
+        if (int(self.facts["Бюджет"]) <= 1_000_000):
+            print("К сожалению, такого бюджета недостаточно для покупки недвижимости.")
+            print("Или же вы можете рассмотреть коммунальное жилье.")
+            return
+        
+        # Преобразуем бюджет из числового типа в категориальный --->
+        self.convert_budget_to_category_type()
+
+        # Посомтрим что у нас получилось по ответам
+        print("Ваши ответы:", self.facts)
+
+        # Пройдемся по правилам , составляя список рекомендаций, топ-3 варианта для покупки --->
+        # Список для результата работы экспертной системы
+        self.recommendations = []
+
+        for current_estate in self.rules:
+            
+            score = 0
+
+            for key,value in current_estate["Условия"].items():
+
+                if key in self.facts and (self.facts[key] == value or callable(value)):
+                    
+                    # Проверяка на лямбда-функцию ---> Количество детей
+                    if callable(value):
+                        fact_value = int(self.facts.get(key))
+
+                        if (value(fact_value) == int(self.facts[key])):
+                            score += 25
+
+                    else: 
+                        score += 25
+
+            self.recommendations.append((current_estate["Результат"], score))
+
+        
+        # Посмотрим что насобирали
+        self.recommendations.sort(key = lambda x : x[1], reverse=True)
+
+        print("\nРекомендованные варианты (от наилучшего к менее подходящему):")
+        self.recommendations = [rec for rec in self.recommendations if rec[1] > 0][:3]
+
+        if self.recommendations:
+            for target, score in self.recommendations:
+                print(f"Вариант: {target} | Балл: {score:.2f}")
+        else:
+            print("Нет подходящих вариантов. Попробуйте изменить условия.")
+
+    def backward_chaining(self, target):
+        # === === === === === === === === === === === === === === === === === #
+        # Обратный цепочечный вывод
+        # target - конечная цель
+        # === === === === === === === === === === === === === === === === === #
+
+        for current_estate in self.rules:
+
+            if current_estate["Результат"] == target:
+
+                condition_met = True
+
+                for key,condition in current_estate["Условия"].items():
+
+                    if callable(condition):
+                        fact_value = int(self.facts.get(key))
+
+                        if (fact_value is None) or (condition(fact_value) is False):
+                            condition_met = False
+                            break
+
+                    else:
+                        if self.facts.get(key) != condition:  
+                            condition_met = False
+                            break
+
+
+                if condition_met and (target not in self.result_backward_chaining):
+                    self.result_backward_chaining.append(target)
+                    return True
+                
+        return False
+    
     def get_facts(self):
 
         # === === === === === === === === === === === === === === === === === #
@@ -56,101 +148,6 @@ class RealEstateExpert:
             return answer in ["Очень важно", "Не критично"]
 
         return False
-
-    
-    def fit(self):
-
-        # === === === === === === === === === === === === === === === === === #
-        # Получаем ответы на вопросы, проверяем их корректность и накладываем ограничения
-        # Получаем рекомендации прямой проверкой условий
-        # === === === === === === === === === === === === === === === === === #
-
-        # Получим ответы от пользователя на заданные вопросы :
-        self.get_facts()
-
-        # Рассмотрим частный случай , когда бюджет менее 1 млн. рублей --->
-        if (int(self.facts["Бюджет"]) <= 1_000_000):
-            print("К сожалению, такого бюджета недостаточно для покупки недвижимости.")
-            print("Или же вы можете рассмотреть коммунальное жилье.")
-            return
-        
-        # Преобразуем бюджет из числового типа в категориальный --->
-        self.convert_budget_to_category_type()
-
-        # Посомтрим что у нас получилось по ответам
-        print("Ваши ответы:", self.facts)
-
-        # Пройдемся по правилам , составляя список рекомендаций, топ-3 варианта для покупки --->
-        # Список для результата работы экспертной системы
-        self.recommendations = []
-
-        for current_estate in self.rules:
-            
-            score = 0
-
-            for key,value in current_estate["Условия"].items():
-
-                if key in self.facts and (self.facts[key] == value or callable(value)):
-                    
-                    # Проверяка на лямбда-функцию ---> Количество детей
-                    if (callable(value)):
-                        value(int(self.facts[key]))
-
-                    score += 25
-
-            self.recommendations.append((current_estate["Результат"], score))
-
-        
-        # Посмотрим что насобирали
-        self.recommendations.sort(key = lambda x : x[1], reverse=True)
-
-        print("\nРекомендованные варианты (от наилучшего к менее подходящему):")
-        self.recommendations = [rec for rec in self.recommendations if rec[1] > 0][:3]
-
-        if self.recommendations:
-            for target, score in self.recommendations:
-                print(f"Вариант: {target} | Балл: {score:.2f}")
-        else:
-            print("Нет подходящих вариантов. Попробуйте изменить условия.")
-
-    def backward_chaining(self, goal, facts, visited=None):
-        # === === === === === === === === === === === === === === === === === #
-        # Обратный цепочечный вывод
-        # goal - конечная цель
-        # facts - известные факты
-        # === === === === === === === === === === === === === === === === === #
-
-        if visited is None:
-            visited = set()
-
-        if goal in facts:
-            return True
-        
-        if goal in visited:
-            return False
-        
-        visited.add(goal)
-
-        for rule in self.rules:
-            if rule["Результат"] == goal:
-                print("rule == goal")
-                condition_met = True
-
-                for condition in rule["Условия"].values():
-                    # TO DO::: ПРОВЕРКА ЛЯМБДА ФУНКЦИЙ НЕ ПРОХОДИТ!
-                    if self.backward_chaining(condition, facts, visited) is False:
-                        print(f"condition = {condition} ---> не выполнилось.")
-                        condition_met = False
-                        break
-
-                if condition_met:
-                    print("all condition is met")
-                    facts.add(goal)
-                    return True
-                
-        return False
-
-
 
     def convert_budget_to_category_type(self):
 
