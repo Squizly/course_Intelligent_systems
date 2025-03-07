@@ -1,6 +1,10 @@
 import customtkinter, os
 from PIL import Image
 
+from knowledge_base.questions import *
+from knowledge_base.rules import *
+from expert_system import *
+
 
 class RealEstateApp(customtkinter.CTk):
     def __init__(self):
@@ -65,6 +69,7 @@ class RealEstateApp(customtkinter.CTk):
         # === === === === === === === === === === === === === === === === === === === === === === === === #
     
     def create_real_estate_frame(self):
+
         # === === === === === === === === === === === === === === === === === #
         # Создаем фрейм под недвижимость
         # === === === === === === === === === === === === === === === === === #
@@ -128,6 +133,92 @@ class RealEstateApp(customtkinter.CTk):
 
         # Установка значения по умолчанию
         self.input_infrastructure_combobox.set("Да")
+    
+    def get_predict_real_estate(self):
+
+        # === === === === === === === === === === === === === === === === === #
+        # Получения рекомендаций по подбору недвижимости на основе введенных данных
+        # === === === === === === === === === === === === === === === === === #
+        
+        budget = self.input_budget_entry.get()
+
+        if (budget == ""):
+            self.show_message("Данных недостаточно! Пожалуйста дозаполните анкету.")
+            return
+
+
+        if (int(budget) <= 1_000_000):
+            self.show_message("К сожалению, такого бюджета недостаточно для покупки недвижимости.\nИли же вы можете рассмотреть коммунальное жилье")
+            return
+    
+        family_status = self.input_family_combobox.get()
+        children_count = self.input_children_combobox.get()
+        infrastructure = self.input_infrastructure_combobox.get()
+
+        if (infrastructure == "Да"):
+            infrastructure = "Очень важно"
+        else:
+            infrastructure = "Не критично"
+
+        system = RealEstateExpert(questions, rules)
+        system.set_facts(budget, family_status, children_count, infrastructure)
+
+        recommendations = system.fit()
+
+        if recommendations:
+            print("рекомендации получены в приложение!\n",recommendations)
+            # Создаем новое окно для отображения результатов
+            self.show_results_window(system.facts, recommendations)
+
+    def show_message(self, message):
+        
+        # === === === === === === === === === === === === === === === === === #
+        # Вывод какого-либо сообщения на экран в отдельном окне
+        # === === === === === === === === === === === === === === === === === #
+
+        message_window = customtkinter.CTkToplevel(self)
+        message_window.title("Результат")
+        message_window.geometry("530x130")
+        message_window.resizable(False, False)
+
+        # Заголовок для рекомендаций
+        message_label = customtkinter.CTkLabel(message_window, text=message, 
+                                                       font=("Comic Sans MS", 13, "bold"), justify="center")
+        message_label.pack(pady=10)
+
+        # Кнопка "Закрыть"
+        close_button = customtkinter.CTkButton(message_window, text="Закрыть", command=message_window.destroy, 
+                                            font=("Verdana", 12, "bold"), width=100, height=30)
+        close_button.pack(pady=10)
+
+    
+    def show_results_window(self, recommendations):
+        
+        # === === === === === === === === === === === === === === === === === #
+        # Вывод рекомендаций на экран в отдельном окне
+        # === === === === === === === === === === === === === === === === === #
+
+        results_window = customtkinter.CTkToplevel(self)
+        results_window.title("Результаты предсказания")
+        results_window.geometry("550x150")  # Увеличиваем высоту окна для лучшего отображения
+        results_window.resizable(False, False)
+
+        # Заголовок для рекомендаций
+        recommendations_label = customtkinter.CTkLabel(results_window, text="Рекомендованные варианты (от наилучшего к менее подходящему)", 
+                                                       font=("Comic Sans MS", 15, "bold"), justify="center")
+        recommendations_label.pack(pady=10)
+
+        # Форматируем вывод рекомендаций
+        recommendations_text = "\n".join([f"{i + 1}. {desc} | Балл: {rating}" for i, (desc, rating) in enumerate(recommendations)])
+        
+        # Отображаем рекомендации
+        recommendations_display = customtkinter.CTkLabel(results_window, text=recommendations_text, font=("Verdana", 11, "bold"), anchor="w", justify="left")
+        recommendations_display.pack(pady=10)
+
+        # Кнопка "Закрыть"
+        close_button = customtkinter.CTkButton(results_window, text="Закрыть", command=results_window.destroy, 
+                                            font=("Verdana", 12, "bold"), width=100, height=30)
+        close_button.pack(pady=10)
     
     def validate_budget(self, new_value):
 
