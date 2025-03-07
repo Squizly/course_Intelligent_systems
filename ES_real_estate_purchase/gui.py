@@ -41,6 +41,7 @@ class RealEstateApp(customtkinter.CTk):
         self.select_frame_by_name("real_estate")
     
     def create_navigation_menu(self):
+
         # === === === === === === === === === === === === === === === === === #
         # Создаем навигационное меню
         # === === === === === === === === === === === === === === === === === #
@@ -76,6 +77,10 @@ class RealEstateApp(customtkinter.CTk):
         # === === === === === === === === === === === === === === === === === === === === === === === === #
 
     def create_car_frame(self):
+
+        # === === === === === === === === === === === === === === === === === #
+        # Создаем фрейм под автомобили
+        # === === === === === === === === === === === === === === === === === #
 
         self.car_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
 
@@ -280,6 +285,11 @@ class RealEstateApp(customtkinter.CTk):
         self.select_frame_by_name("real_estate")
     
     def car_button_event(self):
+
+        # === === === === === === === === === === === === === === === === === #
+        # Переключаемся на фрейм с автомобилями
+        # === === === === === === === === === === === === === === === === === #
+
         self.select_frame_by_name("car")
 
     def change_appearance_mode_event(self, new_appearance_mode):
