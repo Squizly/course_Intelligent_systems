@@ -1,5 +1,3 @@
-import re
-
 from gui import *
 
 if __name__ == "__main__":
