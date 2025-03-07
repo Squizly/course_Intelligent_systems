@@ -42,7 +42,6 @@ class RealEstateExpert:
         for current_estate in self.rules:
             
             score = 0
-
             for key,value in current_estate["Условия"].items():
 
                 if key in self.facts and (self.facts[key] == value or callable(value)):
@@ -51,7 +50,7 @@ class RealEstateExpert:
                     if callable(value):
                         fact_value = int(self.facts.get(key))
 
-                        if (value(fact_value) == int(self.facts[key])):
+                        if value(fact_value):
                             score += 25
 
                     else: 
@@ -60,9 +59,10 @@ class RealEstateExpert:
             self.recommendations.append((current_estate["Результат"], score))
 
         
-        # Посмотрим что насобирали
+        # Отсортируем рекомендации по баллу
         self.recommendations.sort(key = lambda x : x[1], reverse=True)
 
+        # Возьмем только топ 3 результата
         print("\nРекомендованные варианты (от наилучшего к менее подходящему):")
         self.recommendations = [rec for rec in self.recommendations if rec[1] > 0][:3]
 
@@ -71,6 +71,8 @@ class RealEstateExpert:
                 print(f"Вариант: {target} | Балл: {score:.2f}")
         else:
             print("Нет подходящих вариантов. Попробуйте изменить условия.")
+        
+        return self.recommendations
 
     def backward_chaining(self, target):
         # === === === === === === === === === === === === === === === === === #
@@ -124,6 +126,20 @@ class RealEstateExpert:
                     
                 else:
                     print("Некорректный ввод. Пожалуйста, попробуй снова.")
+        
+    def set_facts(self, budget, family_status, children_count, infrastructure):
+
+        # === === === === === === === === === === === === === === === === === #
+        # Установить данные о требованиях пользователя по подбору недвижимости
+        # === === === === === === === === === === === === === === === === === #
+
+        self.facts = dict()
+        
+        self.facts["Бюджет"] = budget
+        self.facts["Семейное положение"] = family_status
+        self.facts["Количество детей"] = children_count
+        self.facts["Инфраструктура"] = infrastructure
+
     
     def validate_input(self, question, answer):
 
