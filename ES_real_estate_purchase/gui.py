@@ -35,6 +35,7 @@ class RealEstateApp(customtkinter.CTk):
 
         # Настройка фрейма под недвижимость
         self.create_real_estate_frame()
+        self.create_car_frame()
 
         # По-умолчанию выбран фрейм с недвижимостью
         self.select_frame_by_name("real_estate")
@@ -61,12 +62,29 @@ class RealEstateApp(customtkinter.CTk):
                                                    font=customtkinter.CTkFont(family="Verdana", size=12, weight="bold"))
         self.real_estate_button.grid(row=1, column=0, sticky="ew")
 
+        self.car_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Автомобиль",
+                                                      fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
+                                                      image=self.car_image, anchor="w", command=self.car_button_event,
+                                                      font=customtkinter.CTkFont(family="Verdana", size=12, weight="bold"))
+        self.car_button.grid(row=2, column=0, sticky="ew")
+
         # Комбо-бокс с темами интерфейса (светлый/тёмный)
         self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.navigation_frame, values=["Системная", "Тёмная", "Светлая"],
                                                                 command=self.change_appearance_mode_event)
         self.appearance_mode_menu.grid(row=6, column=0, padx=20, pady=20, sticky="s")
 
         # === === === === === === === === === === === === === === === === === === === === === === === === #
+
+    def create_car_frame(self):
+
+        self.car_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
+
+        self.car_frame.grid_rowconfigure(0, weight=1)
+        self.car_frame.grid_columnconfigure(0, weight=1)
+        self.car_frame.grid_columnconfigure(1, weight=1)
+
+        self.coming_soon_label = customtkinter.CTkLabel(self.car_frame, text="Если вдруг решу добавлять ещё системы :)) ", font=("Comic Sans MS", 15, "bold"))
+        self.coming_soon_label.grid(row=0, column=0, columnspan=2, padx=10, pady=(20, 40), sticky="nsew")
     
     def create_real_estate_frame(self):
 
@@ -168,7 +186,7 @@ class RealEstateApp(customtkinter.CTk):
         if recommendations:
             print("рекомендации получены в приложение!\n",recommendations)
             # Создаем новое окно для отображения результатов
-            self.show_results_window(system.facts, recommendations)
+            self.show_results_window(recommendations)
 
     def show_message(self, message):
         
@@ -191,7 +209,6 @@ class RealEstateApp(customtkinter.CTk):
                                             font=("Verdana", 12, "bold"), width=100, height=30)
         close_button.pack(pady=10)
 
-    
     def show_results_window(self, recommendations):
         
         # === === === === === === === === === === === === === === === === === #
@@ -240,12 +257,19 @@ class RealEstateApp(customtkinter.CTk):
 
         # Устанавливаем цвет для выбранной кнпоки
         self.real_estate_button.configure(fg_color=("gray75", "gray25") if name == "real_estate" else "transparent")
+        self.car_button.configure(fg_color=("gray75", "gray25") if name == "car" else "transparent")
+
 
         # Показываем выбранный фрейм
         if name == "real_estate":
             self.real_estate_frame.grid(row=0, column=1, sticky="nsew")
         else:
             self.real_estate_frame.grid_forget()
+
+        if name == "car":
+            self.car_frame.grid(row=0, column=1, sticky="nsew")
+        else:
+            self.car_frame.grid_forget()
 
     def real_estate_button_event(self):
 
@@ -254,6 +278,9 @@ class RealEstateApp(customtkinter.CTk):
         # === === === === === === === === === === === === === === === === === #
 
         self.select_frame_by_name("real_estate")
+    
+    def car_button_event(self):
+        self.select_frame_by_name("car")
 
     def change_appearance_mode_event(self, new_appearance_mode):
 
@@ -282,3 +309,6 @@ class RealEstateApp(customtkinter.CTk):
         # Иконка домика
         self.real_estate_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "real_estate_dark.png")),
                                                  dark_image=Image.open(os.path.join(image_path, "real_estate_light.png")), size=(20, 20))
+
+        self.car_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "car_dark.png")),
+                                           dark_image=Image.open(os.path.join(image_path, "car_light.png")), size=(20, 17))
