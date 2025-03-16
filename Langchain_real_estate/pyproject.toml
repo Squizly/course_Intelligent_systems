@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "real estate"
+version = "0.1.0"
+description = ""
+authors = ["Petr Kolesov <petrkolesov010204@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.1"
+langchain = "^0.3.20"
+langchain-gigachat = "^0.3.8"
+langchain-community = "^0.3.19"
+chromadb = "^0.6.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
