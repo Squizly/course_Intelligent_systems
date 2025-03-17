@@ -1,0 +1,262 @@
+[
+    {
+        "budget": "До 2 млн. рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная студия эконом-класса в спальном районе"
+    },
+    {
+        "budget": "До 2 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная студия эконом-класса на окраине"
+    },
+    {
+        "budget": "До 2 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная квартира эконом-класса в спальном районе"
+    },
+    {
+        "budget": "До 2 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная квартира эконом-класса на окраине"
+    },
+    {
+        "budget": "До 2 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная квартира эконом-класса в спальном районе"
+    },
+    {
+        "budget": "До 2 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная квартира эконом-класса на окраине"
+    },
+    {
+        "budget": "До 2 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная студия эконом-класса в спальном районе"
+    },
+    {
+        "budget": "До 2 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная студия эконом-класса на окраине"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная студия эконом-класса в центре"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная студия эконом-класса в спальном районе"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная квартира эконом-класса в центре"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная квартира эконом-класса в спальном районе"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная квартира эконом-класса в центре"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная квартира эконом-класса в спальном районе"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная студия эконом-класса в центре"
+    },
+    {
+        "budget": "До 3 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная студия эконом-класса в спальном районе"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная квартира комфорт-класса в центре"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная квартира комфорт-класса в спальном районе"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная студия эконом-класса в центре"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная студия эконом-класса в спальном районе"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная студия комфорт-класса в центре"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная студия комфорт-класса в спальном районе"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная квартира эконом-класса в центре"
+    },
+    {
+        "budget": "От 3 до 6 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная квартира эконом-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Однокомнатная квартира премиум-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Однокомнатная квартира премиум-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "2 ребенка или больше",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная квартира премиум-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "2 ребенка или больше",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная квартира премиум-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "больше двух детей, но не более четырех",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Трехкомнатная квартира комфорт-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "больше двух детей, но не более четырех",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Трехкомнатная квартира комфорт-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "4 ребенка или больше",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Четырехкомная квартира эконом-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "marital_status": "свободен",
+        "children": "4 ребенка или больше",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Четырехкомная квартира эконом-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная квартира премиум-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "нету",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная квартира премиум-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "2 ребенка или больше",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Двухкомнатная квартира премиум-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "2 ребенка или больше",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Двухкомнатная квартира премиум-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "больше двух детей, но не более четырех",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Трехкомнатная квартира комфорт-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "больше двух детей, но не более четырех",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Трехкомнатная квартира комфорт-класса в спальном районе"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "4 ребенка или больше",
+        "infrastructure_priority": "очень важна",
+        "recommendation": "Четырехкомнатная квартира эконом-класса в центре"
+    },
+    {
+        "budget": "более 6 миллионов рублей",
+        "children": "4 ребенка или больше",
+        "infrastructure_priority": "не особо важна",
+        "recommendation": "Четырехкомнатная квартира эконом-класса в спальном районе"
+    }
+]
